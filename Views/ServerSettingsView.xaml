@@ -1,0 +1,124 @@
+﻿<!-- Views/ServerSettingsView.xaml -->
+<UserControl x:Class="ServerDeploymentTool.Views.ServerSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0" 
+                   Text="Server Settings" 
+                   Style="{StaticResource MaterialDesignHeadline5TextBlock}" 
+                   Margin="0 0 0 20" />
+
+        <!-- Settings Form -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- Server Connection Settings -->
+                <materialDesign:Card Padding="20" Margin="0 0 0 20">
+                    <StackPanel>
+                        <TextBlock Text="Server Connection" 
+                                   Style="{StaticResource MaterialDesignHeadline6TextBlock}" 
+                                   Margin="0 0 0 10" />
+
+                        <TextBox Text="{Binding Settings.Hostname}" 
+                                 materialDesign:HintAssist.Hint="Server IP/Hostname"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                 Margin="0 10" />
+
+                        <TextBox Text="{Binding Settings.Port}" 
+                                 materialDesign:HintAssist.Hint="SSH Port"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                 Margin="0 10" />
+
+                        <TextBox Text="{Binding Settings.Username}" 
+                                 materialDesign:HintAssist.Hint="Username"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                 Margin="0 10" />
+
+                        <StackPanel Orientation="Horizontal" Margin="0 10">
+                            <CheckBox IsChecked="{Binding Settings.UsePrivateKey}" 
+                                      Content="Use Private Key" 
+                                      Margin="0 0 20 0" />
+
+                            <Button Command="{Binding BrowsePrivateKeyCommand}"
+                                    Content="Browse Key File"
+                                    IsEnabled="{Binding Settings.UsePrivateKey}" />
+                        </StackPanel>
+
+                        <TextBox Text="{Binding Settings.PrivateKeyPath}" 
+                                 materialDesign:HintAssist.Hint="Private Key Path"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                 IsEnabled="{Binding Settings.UsePrivateKey}"
+                                 Margin="0 10" />
+
+                        <PasswordBox x:Name="PasswordBox"
+                                     materialDesign:HintAssist.Hint="Password"
+                                     Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
+                                     IsEnabled="{Binding Settings.UsePrivateKey, Converter={StaticResource InverseBooleanConverter}}"
+                                     Margin="0 10" />
+                    </StackPanel>
+                </materialDesign:Card>
+
+                <!-- Application Settings -->
+                <materialDesign:Card Padding="20" Margin="0 0 0 20">
+                    <StackPanel>
+                        <TextBlock Text="Application Settings" 
+                                   Style="{StaticResource MaterialDesignHeadline6TextBlock}" 
+                                   Margin="0 0 0 10" />
+
+                        <TextBox Text="{Binding Settings.ServerPath}" 
+                                 materialDesign:HintAssist.Hint="Server Application Path (e.g. /var/www/html/public/server)"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                 Margin="0 10" />
+
+                        <TextBox Text="{Binding Settings.AppName}" 
+                                 materialDesign:HintAssist.Hint="PM2 Application Name"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                 Margin="0 10" />
+                    </StackPanel>
+                </materialDesign:Card>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Action Buttons -->
+        <StackPanel Grid.Row="2" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right" 
+                    Margin="0 20 0 0">
+
+            <Button Command="{Binding TestConnectionCommand}"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    Content="Test Connection"
+                    Margin="0 0 10 0" />
+
+            <Button Command="{Binding SaveSettingsCommand}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Content="Save Settings" />
+        </StackPanel>
+
+        <!-- Status Message -->
+        <materialDesign:Snackbar Grid.Row="2"
+                                 IsActive="{Binding StatusMessage, Converter={StaticResource StringToBooleanConverter}}"
+                                 Message="{Binding StatusMessage}" />
+
+        <!-- Busy Indicator -->
+        <Grid Grid.RowSpan="3" 
+              Background="#80000000" 
+              Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
+                         Value="0" 
+                         IsIndeterminate="True" />
+        </Grid>
+    </Grid>
+</UserControl>

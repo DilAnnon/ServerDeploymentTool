@@ -1,0 +1,136 @@
+﻿<Window x:Class="ServerDeploymentTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:views="clr-namespace:ServerDeploymentTool.Views"
+        xmlns:viewmodels="clr-namespace:ServerDeploymentTool.ViewModels"
+        mc:Ignorable="d"
+        Title="Server Deployment Tool" 
+         Height="650" Width="1000"
+        WindowStartupLocation="CenterScreen"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        FontFamily="{materialDesign:MaterialDesignFont}">
+
+    <Window.Resources>
+        <!-- DataTemplates dla ViewModeli -->
+        <DataTemplate DataType="{x:Type viewmodels:DeploymentViewModel}">
+            <views:DeploymentView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewmodels:ServerSettingsViewModel}">
+            <views:ServerSettingsView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewmodels:RemoteTerminalViewModel}">
+            <views:RemoteTerminalView/>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Top Navigation Bar -->
+        <materialDesign:ColorZone Mode="PrimaryMid" 
+                         Padding="16" 
+                         Grid.Row="0"
+                         materialDesign:ElevationAssist.Elevation="Dp4">
+            <DockPanel>
+                <!-- Left side - Title -->
+                <TextBlock Text="Server Deployment Tool" 
+                  VerticalAlignment="Center"
+                  FontSize="20"
+                  FontWeight="Bold"/>
+
+                <!-- Right side - Navigation -->
+                <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Right"
+                    DockPanel.Dock="Right">
+
+                    <!-- Deploy Button -->
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                    Command="{Binding NavigateToDeploymentCommand}"
+                    Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Rocket" 
+                                           Margin="0,0,8,0"/>
+                            <TextBlock Text="Deploy"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Settings Button -->
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                    Command="{Binding NavigateToServerSettingsCommand}"
+                    Margin="8,0"
+                    Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Cog" 
+                                           Margin="0,0,8,0"/>
+                            <TextBlock Text="Settings"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Terminal Button -->
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                    Command="{Binding NavigateToTerminalCommand}"
+                    Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Console" 
+                                           Margin="0,0,8,0"/>
+                            <TextBlock Text="Terminal"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Separator -->
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" 
+                      Margin="16,0"
+                      Background="{DynamicResource MaterialDesignDivider}"/>
+                    
+                    <!-- Language Selector -->
+                    <ComboBox ItemsSource="{Binding AvailableCultures}"
+                            SelectedItem="{Binding CurrentCulture}"
+                            DisplayMemberPath="NativeName"
+                            Width="100"
+                            Margin="0,0,8,0"
+                            materialDesign:HintAssist.Hint="{x:Static resources:Resources.Language}"/>
+                    
+
+                    <!-- Theme Toggle -->
+                    <ToggleButton IsChecked="{Binding IsDarkTheme}"
+                        Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                        ToolTip="Toggle Light/Dark Theme"/>
+
+                    <!-- Color Picker -->
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                    Click="ColorButton_Click"
+                    Margin="8,0,0,0"
+                    Foreground="{DynamicResource MaterialDesignBody}">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Width="20" 
+                            Height="20" 
+                            BorderThickness="1" 
+                            BorderBrush="{DynamicResource MaterialDesignDivider}">
+                                <Rectangle Fill="{Binding AccentColor, Converter={StaticResource StringToBrushConverter}}"/>
+                            </Border>
+                            <TextBlock Text="Color" 
+                              Margin="8,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </DockPanel>
+        </materialDesign:ColorZone>
+
+
+        <!-- Main Content -->
+        <ContentControl Grid.Row="1" 
+                    Content="{Binding CurrentViewModel}"/>
+    </Grid>
+
+</Window>

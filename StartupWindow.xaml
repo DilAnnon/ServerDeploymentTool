@@ -1,0 +1,33 @@
+﻿<!-- StartupWindow.xaml -->
+<Window x:Class="ServerDeploymentTool.StartupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Server Deployment Tool - Start" 
+        Height="300" Width="500"
+        WindowStartupLocation="CenterScreen"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        FontFamily="{materialDesign:MaterialDesignFont}">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Server Deployment Tool" 
+                      FontSize="24" 
+                      HorizontalAlignment="Center" 
+                      Margin="0,0,0,30"/>
+
+            <Button x:Name="btnStart"
+                    Content="ROZPOCZNIJ" 
+                    Width="150"
+                    Height="40"
+                    Click="btnStart_Click"
+                    Style="{StaticResource MaterialDesignRaisedButton}"/>
+        </StackPanel>
+    </Grid>
+</Window>

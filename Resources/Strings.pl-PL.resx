@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppTitle" xml:space="preserve">
+    <value>Narzędzie Wdrażania Serwera</value>
+  </data>
+  <data name="Deploy" xml:space="preserve">
+    <value>Wdróż</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Ustawienia</value>
+  </data>
+  <data name="Terminal" xml:space="preserve">
+    <value>Terminal</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Kolor</value>
+  </data>
+  <data name="LocalFolderPath" xml:space="preserve">
+    <value>Ścieżka folderu lokalnego</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Przeglądaj</value>
+  </data>
+  <data name="ChangedFiles" xml:space="preserve">
+    <value>Zmienione pliki</value>
+  </data>
+  <data name="DeploymentLog" xml:space="preserve">
+    <value>Log wdrożenia</value>
+  </data>
+  <data name="NotConnected" xml:space="preserve">
+    <value>Nie połączono</value>
+  </data>
+  <data name="Connect" xml:space="preserve">
+    <value>Połącz</value>
+  </data>
+  <data name="DeployToServer" xml:space="preserve">
+    <value>Wdróż na serwer</value>
+  </data>
+  <data name="ThemeToggle" xml:space="preserve">
+    <value>Zmień motyw</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Język</value>
+  </data>
+  <data name="ServerSettings" xml:space="preserve">
+    <value>Ustawienia serwera</value>
+  </data>
+  <data name="ServerConnection" xml:space="preserve">
+    <value>Połączenie z serwerem</value>
+  </data>
+  <data name="Hostname" xml:space="preserve">
+    <value>IP/Nazwa hosta serwera</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Port SSH</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Nazwa użytkownika</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Hasło</value>
+  </data>
+  <data name="UsePrivateKey" xml:space="preserve">
+    <value>Użyj klucza prywatnego</value>
+  </data>
+  <data name="BrowseKeyFile" xml:space="preserve">
+    <value>Wybierz plik klucza</value>
+  </data>
+  <data name="PrivateKeyPath" xml:space="preserve">
+    <value>Ścieżka klucza prywatnego</value>
+  </data>
+  <data name="TestConnection" xml:space="preserve">
+    <value>Testuj połączenie</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Zapisz</value>
+  </data>
+</root>
